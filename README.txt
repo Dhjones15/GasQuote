@@ -11,3 +11,13 @@ visit: http://localhost/phpmyadmin in any browser to import .sql data
 Go to: http://localhost/GasQuote/profile to access WebApp
 
 Register your username and password, then input details at Profile Management to access QuoteRequest and QuoteHistory pages.
+
+
+*************************************
+For testing install PHPunit to v 7 or higher
+I found this link helpful: https://stackoverflow.com/questions/43188374/update-phpunit-xampp
+Place test folders and any included model files into the /xampp/php/pear/PHPUnit directory
+
+Open Xampp shell and navigate to xampp/php
+enter:
+#  phpunit /PHPUnit/mytestfile.php
