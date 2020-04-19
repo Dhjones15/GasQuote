@@ -1,0 +1,88 @@
+##
+##Tables 
+##
+
+## Login Table
+
+CREATE TABLE  login(
+	username VARCHAR(20) NOT NULL,
+	password VARCHAR(20) NOT NULL,
+	PRIMARY KEY(username)
+	)
+
+##Client Information Table
+
+CREATE TABLE client_info(
+	username VARCHAR(20) NOT NULL,
+	client_name VARCHAR(50) NOT NULL,
+	address1 VARCHAR(100) NOT NULL,
+	address2 VARCHAR(100),
+	city VARCHAR(100) NOT NULL,
+	state VARCHAR(2) NOT NULL,
+	zip VARCHAR(9) NOT NULL,
+	PRIMARY KEY(username),
+	FOREIGN KEY(username) REFERENCES login(username)
+	)
+
+
+##Fuel Quote Table
+
+CREATE TABLE fuel_quote(
+	username VARCHAR(20) NOT NULL,
+	quote_id INT NOT NULL AUTO_INCREMENT,
+	gallons_requested INT NOT NULL,
+	delivery_date DATE NOT NULL,	##CCYY-MM-DD
+	address VARCHAR(200) NOT NULL,
+	suggested_price DOUBLE NOT NULL,
+	amount_due DOUBLE NOT NULL,
+	PRIMARY KEY(quote_id),
+	FOREIGN KEY(username) REFERENCES login(username)
+	)
+
+##
+##Sample data
+##
+INSERT INTO login(username,password)
+VALUES
+('bob','123')
+('bob2','123')
+
+INSERT INTO client_info(username,client_name,state,city,address1,zip)
+VALUES
+('bob','bob mike','tx2','houston','123asd','1234')
+
+INSERT INTO fuel_quote(username,gallons_requested,delivery_date,suggested_price,amount_due)
+VALUES
+('bob','100','1993-04-12','1.23','123.00')
+
+
+
+
+
+/*Example of creating table in mysql with php */
+<?php
+/* Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+$link = mysqli_connect("localhost", "root", "", "demo");
+ 
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// Attempt create table query execution
+$sql = "CREATE TABLE persons(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    email VARCHAR(70) NOT NULL UNIQUE
+)";
+if(mysqli_query($link, $sql)){
+    echo "Table created successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+ 
+// Close connection
+mysqli_close($link);
+?>
