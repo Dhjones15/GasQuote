@@ -1,3 +1,8 @@
+Updated 4/19/20
+Added Pricing module
+Added 'address' to Database table 'fuel_quote' 
+
+*****************************
 PHP/ HTML Web Application with MySQL database
 Running local with XAMPP v3.2.4 with PHP 7.4.3
 PHPunit v9.0.2 used for Testing
